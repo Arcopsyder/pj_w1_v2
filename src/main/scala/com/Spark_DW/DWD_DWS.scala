@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory
   */
 object DWD_DWS {
   def main(args: Array[String]): Unit = {
+    System.setProperty("hadoop.home.dir", "F:\\soft\\hadoop-common-2.2.0-bin-master.zip\\hadoop-common-2.2.0-bin-master")
     val conf = new SparkConf().setAppName(Constan.SPARK_APP_NAME_USER).setMaster(Constan.SPARK_LOACL)
     val sc = new SparkContext(conf)
     val hiveContext = new HiveContext(sc)
@@ -27,14 +28,14 @@ object DWD_DWS {
         // 运行SQL
       val df = hiveContext.sql(finalSql)
       // 处理配置参数
-      val mysqlTableName = args(0).split(".")(1)
+      val mysqlTableName = args(0).split("\\.")(1)
       val hiveTableName = args(0)
       val jdbcProp = JDBCUtils.getJdbcProp()._1
       val jdbcUrl = JDBCUtils.getJdbcProp()._2
       // 存入MySQL
-      df.write.mode("append").jdbc(jdbcUrl,mysqlTableName,jdbcProp)
+     // df.write.mode("append").jdbc(jdbcUrl,mysqlTableName,jdbcProp)
       // 存入Hive
-      df.write.mode(SaveMode.Append).insertInto(hiveTableName)
+      df.write.mode(SaveMode.Overwrite).insertInto(hiveTableName)
     }
   }
 }
