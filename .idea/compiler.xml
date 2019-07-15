@@ -9,8 +9,5 @@
         <module name="hz1803_Test" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="hz1803_Test" target="1.6" />
-    </bytecodeTargetLevel>
   </component>
 </project>
