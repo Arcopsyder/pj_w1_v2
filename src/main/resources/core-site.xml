@@ -5,7 +5,7 @@
   <!-- 指定hdfs的老大 -->
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://192.168.86.111:9000</value>
+    <value>hdfs://192.168.116.191:9000</value>
   </property>
   <!-- 指定hadoop临时目录 -->
   <property>

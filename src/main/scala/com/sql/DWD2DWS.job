@@ -1,0 +1,2 @@
+type=command
+command=sh DWD2DWS.sh
